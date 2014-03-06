@@ -37,6 +37,8 @@ public class MainActivity extends Activity {
 	//This is any string we want to use. This will be used for avoid CSRF attacks. You can generate one here: http://strongpasswordgenerator.com/
 	private static final String STATE = "E3ZYKC1T6H2yP4z";
 	private static final String REDIRECT_URI = "http://com.amalbit.redirecturl";
+	
+	private static final String SCOPES = "r_fullprofile%20r_emailaddress%20r_network";
 	/*********************************************/
 	
 	//These are constants used for build the urls
@@ -48,6 +50,7 @@ public class MainActivity extends Activity {
 	private static final String GRANT_TYPE = "authorization_code";
 	private static final String RESPONSE_TYPE_VALUE ="code";
 	private static final String CLIENT_ID_PARAM = "client_id";
+	private static final String SCOPE_PARAM = "scope";
 	private static final String STATE_PARAM = "state";
 	private static final String REDIRECT_URI_PARAM = "redirect_uri";
 	/*---------------------------------------*/
@@ -126,7 +129,7 @@ public class MainActivity extends Activity {
 	 * @return Url
 	 */
 	private static String getAccessTokenUrl(String authorizationToken){
-		return ACCESS_TOKEN_URL
+		String URL = ACCESS_TOKEN_URL
 				+QUESTION_MARK
 				+GRANT_TYPE_PARAM+EQUALS+GRANT_TYPE
 				+AMPERSAND
@@ -137,17 +140,22 @@ public class MainActivity extends Activity {
 				+REDIRECT_URI_PARAM+EQUALS+REDIRECT_URI
 				+AMPERSAND
 				+SECRET_KEY_PARAM+EQUALS+SECRET_KEY;
+		Log.i("accessToken URL",""+URL);
+		return URL;
 	}
 	/**
 	 * Method that generates the url for get the authorization token from the Service
 	 * @return Url
 	 */
 	private static String getAuthorizationUrl(){
-		return AUTHORIZATION_URL
+		String URL = AUTHORIZATION_URL
 				+QUESTION_MARK+RESPONSE_TYPE_PARAM+EQUALS+RESPONSE_TYPE_VALUE
-				+AMPERSAND+CLIENT_ID_PARAM+EQUALS+API_KEY
-				+AMPERSAND+STATE_PARAM+EQUALS+STATE
-				+AMPERSAND+REDIRECT_URI_PARAM+EQUALS+REDIRECT_URI;
+				+AMPERSAND  +CLIENT_ID_PARAM    +EQUALS +API_KEY
+				+AMPERSAND  +SCOPE_PARAM        +EQUALS +SCOPES
+				+AMPERSAND  +STATE_PARAM        +EQUALS +STATE
+				+AMPERSAND  +REDIRECT_URI_PARAM +EQUALS +REDIRECT_URI;
+		Log.i("authorization URL",""+URL);
+		return URL;
 	}
 	
 	@Override
