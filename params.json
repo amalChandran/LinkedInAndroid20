@@ -1,0 +1,6 @@
+{
+  "name": "Linkedin authentication using Oauth 2.0",
+  "tagline": "A simple android project implementing Oauth 2.0 for logging in using a LinkedIn account.",
+  "body": "### Getting started:\r\n\r\n  You need to create a LinkedIn application and get the required API access token and secret. https://developer.linkedin.com/docs/signin-with-linkedin\r\n",
+  "note": "Don't delete this file! It's used internally to help with page regeneration."
+}
